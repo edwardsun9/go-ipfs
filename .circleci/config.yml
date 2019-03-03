@@ -6,6 +6,7 @@ defaults: &defaults
   environment:
     GO111MODULE: "on"
     TEST_NO_FUSE: 1
+    TEST_NO_DOCKER: 1
     GOPATH: $HOME/.go_workspace
     CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
     CIRCLE: 1
@@ -25,7 +26,6 @@ jobs:
     steps:
     - checkout
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
-    - run: 'sudo docker info >/dev/null 2>&1 || sudo service docker start; '
     - restore_cache:
         keys:
         - v1-dep-{{ .Branch }}-
@@ -61,7 +61,6 @@ jobs:
     steps:
     - checkout
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
-    - run: 'sudo docker info >/dev/null 2>&1 || sudo service docker start; '
     - restore_cache:
         keys:
         - v1-dep-{{ .Branch }}-
