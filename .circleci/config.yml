@@ -2,7 +2,6 @@ version: 2.0
 
 defaults: &defaults
   working_directory: ~/ipfs/go-ipfs
-  shell: /bin/bash --login
   environment:
     GO111MODULE: "on"
     TEST_NO_FUSE: 1
