@@ -34,9 +34,8 @@ function start_http_server() {
     exec 7>server_stdin
     rm server_stdin
 
-    while ! nc -z 127.0.0.1 $WEB_SERVE_PORT; do
-        go-sleep 100ms
-    done
+    test_run_repeat_60_sec 'nc -z 127.0.0.1 $WEB_SERVE_PORT'
+    return $?
 }
 
 function teardown_remote_server() {
